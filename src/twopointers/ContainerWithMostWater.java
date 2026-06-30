@@ -1,20 +1,48 @@
 package twopointers;
+
+
+import java.util.*;
+
 package twopointers;
 
 import java.util.*;
 
-/**
- * LeetCode 11 - Container With Most Water
- *
- * Problem: Given n non-negative integers representing heights of vertical lines,
- * find two lines that, together with the x-axis, form a container that holds
- * the most water.
- *
- * Approach: Two Pointers
- * - Start with widest possible container (left = 0, right = n-1)
- * - Move the pointer with the SHORTER height inward, since the shorter
- *   line is always the limiting factor on area - keeping it can never
- *   produce a bigger area than moving past it.
- * - Track the maximum area seen at each step.
- *
- *
+
+public class ContainerWithMostWater {
+
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int maxArea = 0;
+
+        while (left < right) {
+            int width = right - left;
+            int currentHeight = Math.min(height[left], height[right]);
+            int currentArea = width * currentHeight;
+
+            maxArea = Math.max(maxArea, currentArea);
+
+            // Move the pointer at the shorter line inward
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+
+    public static void main(String[] args) {
+        ContainerWithMostWater solution = new ContainerWithMostWater();
+
+        int[] heights1 = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        System.out.println("Test 1: " + solution.maxArea(heights1)); // Expected: 49
+
+        int[] heights2 = {1, 1};
+        System.out.println("Test 2: " + solution.maxArea(heights2)); // Expected: 1
+
+        int[] heights3 = {4, 3, 2, 1, 4};
+        System.out.println("Test 3: " + solution.maxArea(heights3)); // Expected: 16
+    }
+}
