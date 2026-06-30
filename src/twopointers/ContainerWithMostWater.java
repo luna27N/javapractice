@@ -1,9 +1,4 @@
-package twopointers;
 
-
-import java.util.*;
-
-package twopointers;
 
 import java.util.*;
 
