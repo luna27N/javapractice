@@ -1,8 +1,5 @@
 
  package twopointers;
-
- package twopointers;
-
  import java.util.*;
 
  /**
